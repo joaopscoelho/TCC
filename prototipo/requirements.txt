@@ -1,0 +1,12 @@
+# Fase 1 - nucleo de analise estatica (sem LLM) - ja em uso
+tree-sitter
+tree-sitter-python
+
+# Fase 2 - integracao com a API do Claude (instalar quando chegar a fase 2)
+anthropic
+
+# Fase 4 - CLI de navegacao (instalar quando chegar a fase 4)
+click
+
+# dependencias de desenvolvimento
+pytest
