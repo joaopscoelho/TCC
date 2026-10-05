@@ -1,9 +1,13 @@
-# Fase 1 - nucleo de analise estatica (sem LLM) - ja em uso
+# Fase 1 - nucleo de analise estatica (sem LLM) - em uso
 tree-sitter
 tree-sitter-python
 
-# Fase 2 - integracao com a API do Claude (instalar quando chegar a fase 2)
-anthropic
+# Fase 2 local (Ollama) - sem dependencia Python: o cliente usa so a
+# biblioteca padrao. Requer o Ollama instalado a parte (ollama.com).
+
+# Fase 2 nuvem (API do Claude) - ADIADA. Descomente apenas se a comparacao
+# com modelo proprietario entrar no escopo do TCC.
+# anthropic
 
 # Fase 4 - CLI de navegacao (instalar quando chegar a fase 4)
 click
