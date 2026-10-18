@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'UFV-modelo-TCC.blg'
+[57] biber:340> INFO - === seg jun 22, 2026, 21:37:54
+[69] Biber.pm:419> INFO - Reading 'UFV-modelo-TCC.bcf'
+[123] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[133] Biber.pm:4419> INFO - Processing section 0
+[140] Biber.pm:4610> INFO - Looking for bibtex file 'referencias.bib' for section 0
+[141] bibtex.pm:1713> INFO - LaTeX decoding ...
+[145] bibtex.pm:1519> INFO - Found BibTeX data source 'referencias.bib'
+[212] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[212] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[212] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'pt-BR'
+[212] Biber.pm:4245> INFO - No sort tailoring available for locale 'pt-BR'
+[222] bbl.pm:660> INFO - Writing 'UFV-modelo-TCC.bbl' with encoding 'UTF-8'
+[225] bbl.pm:763> INFO - Output to UFV-modelo-TCC.bbl
