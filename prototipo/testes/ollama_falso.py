@@ -23,6 +23,8 @@ class _Servidor(ThreadingHTTPServer):
 class OllamaFalso:
     def __init__(self):
         self.requisicoes = []
+        self.cabecalhos = []
+        self.exigir_chave = None  # se definida, exige "Authorization: Bearer <chave>"
         self.modelos = [{"name": "qwen3:8b", "digest": "sha256:abc123"}]
         self.status_chat = 200
         self.atraso_s = 0
@@ -54,8 +56,19 @@ class OllamaFalso:
                 self.end_headers()
                 self.wfile.write(corpo)
 
+            def _autorizado(self):
+                fake.cabecalhos.append(dict(self.headers))
+                if fake.exigir_chave is None:
+                    return True
+                if self.headers.get("Authorization") == f"Bearer {fake.exigir_chave}":
+                    return True
+                self._responder(401, {"error": "unauthorized"})
+                return False
+
             def do_GET(self):
                 fake.requisicoes.append(("GET", self.path, None))
+                if not self._autorizado():
+                    return
                 if self.path == "/api/tags":
                     self._responder(200, {"models": fake.modelos})
                 else:
@@ -65,6 +78,8 @@ class OllamaFalso:
                 tamanho = int(self.headers.get("Content-Length", 0))
                 corpo = json.loads(self.rfile.read(tamanho) or b"{}")
                 fake.requisicoes.append(("POST", self.path, corpo))
+                if not self._autorizado():
+                    return
                 if fake.atraso_s:
                     time.sleep(fake.atraso_s)
                 if self.path == "/api/chat":

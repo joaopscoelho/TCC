@@ -1,2 +1,3 @@
 \babel@toc {brazil}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Figura 1: Diagrama do ciclo de execução do leitor de tela NVDA, evidenciando a captura de eventos por APIs (MSAA, UIA, IA2), a divisão de processamento por tipo de conteúdo (\textit {Buffer Virtual } e Foco Direto) e as interfaces de saída de áudio e braille.}}{10}{figure.2.1}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Diagrama simplificado do ciclo de execu^^c3^^a7^^c3^^a3o de um leitor de tela, evidenciando a captura de eventos por APIs de acessibilidade (MSAA, UIA, IA2), a divis^^c3^^a3o do processamento por tipo de conte^^c3^^bado (\textit {Buffer Virtual} e Foco Direto) e as interfaces de sa^^c3^^adda de ^^c3^^a1udio e Braille}}{12}{figure.2.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Arquitetura do prot^^c3^^b3tipo, da an^^c3^^a1lise est^^c3^^a1tica do projeto Python ^^c3^^a0 entrega das explica^^c3^^a7^^c3^^b5es em texto e por fala}}{23}{figure.4.2}%

@@ -14,21 +14,31 @@ identica byte a byte entre versoes do Ollama ou entre hardwares diferentes.
 
 Limitacao conhecida (v1): este cliente foi testado contra um servidor
 falso que reproduz o formato documentado, nao contra um modelo real.
+
+Nuvem do Ollama: com --host https://ollama.com e a chave em OLLAMA_API_KEY o
+mesmo cliente chama modelos hospedados (por exemplo gemma4:31b). Nesse modo o
+codigo analisado sai da maquina, e a chave so e enviada a esse host.
 """
 import json
 import os
 import socket
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 
 from analisador.llm.base import (
-    ErroContextoExcedido, ErroLLM, ErroModeloAusente, ErroRespostaVazia,
-    ErroServidorIndisponivel, ErroTempoEsgotado, ExplicadorLLM, RespostaLLM,
-    estimar_tokens,
+    ErroConfiguracaoLLM, ErroContextoExcedido, ErroLLM, ErroModeloAusente,
+    ErroRespostaVazia, ErroServidorIndisponivel, ErroTempoEsgotado,
+    ExplicadorLLM, RespostaLLM, estimar_tokens,
 )
 
 HOST_PADRAO = "http://127.0.0.1:11434"
+
+#: Nuvem do Ollama. Exige chave de API, lida da variavel de ambiente e enviada
+#: SOMENTE a este host: apontar --host para outro servidor nao pode vazar a chave.
+HOST_NUVEM = "ollama.com"
+VARIAVEL_CHAVE = "OLLAMA_API_KEY"
 
 #: Padrao para 16 GB de memoria unificada: cabe com folga (cerca de 5 GB),
 #: e a familia Qwen3 foi treinada em 119 idiomas, o que importa para o
@@ -57,6 +67,11 @@ def normalizar_host(valor) -> str:
     return valor.rstrip("/")
 
 
+def _e_nuvem(host: str) -> bool:
+    """True se o host e a nuvem do Ollama (ollama.com)."""
+    return (urllib.parse.urlparse(host).hostname or "").lower() == HOST_NUVEM
+
+
 def _com_tag(nome: str) -> str:
     """"qwen3" e "qwen3:latest" sao o mesmo modelo."""
     return nome if ":" in nome else f"{nome}:latest"
@@ -74,7 +89,8 @@ class ExplicadorLocal(ExplicadorLLM):
 
     def __init__(self, modelo=None, host=None, contexto=CONTEXTO_PADRAO,
                  resposta_maxima=RESPOSTA_MAXIMA_PADRAO, semente=SEMENTE_PADRAO,
-                 temperatura=0.0, raciocinio=_AUTO, timeout=TIMEOUT_PADRAO_S):
+                 temperatura=0.0, raciocinio=_AUTO, timeout=TIMEOUT_PADRAO_S,
+                 chave=None):
         self.modelo = modelo or os.environ.get("ANALISADOR_MODELO") or MODELO_PADRAO
         self.host = normalizar_host(host or os.environ.get("OLLAMA_HOST"))
         self.contexto = contexto
@@ -83,6 +99,9 @@ class ExplicadorLocal(ExplicadorLLM):
         self.temperatura = temperatura
         self.raciocinio = _raciocinio_padrao(self.modelo) if raciocinio == _AUTO else raciocinio
         self.timeout = timeout
+        self.nuvem = _e_nuvem(self.host)
+        # Chave explicita vale para qualquer host; a do ambiente, so para a nuvem.
+        self._chave = chave or (os.environ.get(VARIAVEL_CHAVE) if self.nuvem else None)
         self._digest = None
 
     # ------------------------------------------------------------------ transporte
@@ -101,17 +120,32 @@ class ExplicadorLocal(ExplicadorLLM):
         return corpo.strip()
 
     def _chamar(self, caminho, corpo=None):
+        if self.nuvem and not self._chave:
+            raise ErroConfiguracaoLLM(
+                f"O host {HOST_NUVEM} exige uma chave de API. Crie uma em "
+                f"{HOST_NUVEM}/settings/keys e defina a variavel {VARIAVEL_CHAVE} "
+                f"(no PowerShell: $env:{VARIAVEL_CHAVE} = \"sua-chave\"). Nunca "
+                "coloque a chave no codigo nem no git.")
+        cabecalhos = {"Content-Type": "application/json"}
+        if self._chave:
+            cabecalhos["Authorization"] = f"Bearer {self._chave}"
         dados = None if corpo is None else json.dumps(corpo).encode("utf-8")
         requisicao = urllib.request.Request(
             self.host + caminho, data=dados,
             method="GET" if corpo is None else "POST",
-            headers={"Content-Type": "application/json"},
+            headers=cabecalhos,
         )
         try:
             with urllib.request.urlopen(requisicao, timeout=self.timeout) as resposta:
                 return json.loads(resposta.read().decode("utf-8"))
         except urllib.error.HTTPError as erro:
             detalhe = self._mensagem_servidor(erro)
+            if erro.code in (401, 403):
+                raise ErroConfiguracaoLLM(
+                    f"O servidor recusou a chave de API (erro {erro.code}). Confira a "
+                    f"chave em {HOST_NUVEM}/settings/keys e se o seu plano permite este "
+                    f"modelo. Resposta do servidor: {detalhe or 'vazia'}"
+                ) from erro
             if erro.code == 404:
                 raise ErroModeloAusente(
                     f"O servidor respondeu 404 para o modelo '{self.modelo}'. "
@@ -213,6 +247,7 @@ class ExplicadorLocal(ExplicadorLLM):
             "backend": "ollama",
             "modelo": self.modelo,
             "host": self.host,
+            "nuvem": self.nuvem,
             "digest": self._digest,
             "contexto": self.contexto,
             "resposta_maxima": self.resposta_maxima,

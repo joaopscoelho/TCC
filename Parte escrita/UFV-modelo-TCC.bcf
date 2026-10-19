@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bcf:controlfile version="3.10" bltxversion="3.19" xmlns:bcf="https://sourceforge.net/projects/biblatex">
+<bcf:controlfile version="3.8" bltxversion="3.17" xmlns:bcf="https://sourceforge.net/projects/biblatex">
   <!-- BIBER OPTIONS -->
   <bcf:options component="biber" type="global">
     <bcf:option type="singlevalued">
@@ -37,11 +37,6 @@
     <bcf:option type="singlevalued">
       <bcf:key>alphaothers</bcf:key>
       <bcf:value>+</bcf:value>
-    </bcf:option>
-    <bcf:option type="multivalued">
-      <bcf:key>extradatecontext</bcf:key>
-      <bcf:value order="1">labelname</bcf:value>
-      <bcf:value order="2">labeltitle</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>labelalpha</bcf:key>
@@ -141,10 +136,6 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>nosortothers</bcf:key>
-      <bcf:value>0</bcf:value>
-    </bcf:option>
-    <bcf:option type="singlevalued">
-      <bcf:key>pluralothers</bcf:key>
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
@@ -282,11 +273,6 @@
   </bcf:options>
   <!-- online -->
   <bcf:options component="biblatex" type="online">
-    <bcf:option type="multivalued">
-      <bcf:key>extradatecontext</bcf:key>
-      <bcf:value order="1">labelname</bcf:value>
-      <bcf:value order="2">labeltitle</bcf:value>
-    </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>labelalpha</bcf:key>
       <bcf:value>0</bcf:value>
@@ -388,11 +374,11 @@
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
-      <bcf:key>skipbiblist</bcf:key>
+      <bcf:key>skiplab</bcf:key>
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
-      <bcf:key>skiplab</bcf:key>
+      <bcf:key>skipbiblist</bcf:key>
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
@@ -507,7 +493,6 @@
     <bcf:option datatype="xml">sortingnamekeytemplate</bcf:option>
     <bcf:option datatype="xml">sortingtemplate</bcf:option>
     <bcf:option datatype="xml">extradatespec</bcf:option>
-    <bcf:option datatype="xml">extradatecontext</bcf:option>
     <bcf:option datatype="xml">labelnamespec</bcf:option>
     <bcf:option datatype="xml">labeltitlespec</bcf:option>
     <bcf:option datatype="xml">labeldatespec</bcf:option>
@@ -616,7 +601,6 @@
     <bcf:option datatype="boolean">labeltitle</bcf:option>
     <bcf:option datatype="boolean">labeltitleyear</bcf:option>
     <bcf:option datatype="boolean">labeldateparts</bcf:option>
-    <bcf:option datatype="boolean">pluralothers</bcf:option>
     <bcf:option datatype="boolean">nohashothers</bcf:option>
     <bcf:option datatype="boolean">nosortothers</bcf:option>
     <bcf:option datatype="boolean">noroman</bcf:option>
@@ -745,7 +729,6 @@
     <bcf:option datatype="xml">translit</bcf:option>
     <bcf:option datatype="xml">sortexclusion</bcf:option>
     <bcf:option datatype="xml">sortinclusion</bcf:option>
-    <bcf:option datatype="xml">extradatecontext</bcf:option>
     <bcf:option datatype="xml">labelnamespec</bcf:option>
     <bcf:option datatype="xml">labeltitlespec</bcf:option>
     <bcf:option datatype="xml">labeldatespec</bcf:option>
@@ -1118,7 +1101,7 @@
     <bcf:namepart order="3">given</bcf:namepart>
   </bcf:uniquenametemplate>
   <!-- SORTING NAME KEY TEMPLATES -->
-  <bcf:sortingnamekeytemplate name="global" visibility="sort">
+  <bcf:sortingnamekeytemplate name="global">
     <bcf:keypart order="1">
       <bcf:part type="namepart" order="1" use="1">prefix</bcf:part>
       <bcf:part type="namepart" order="2">family</bcf:part>
@@ -2443,74 +2426,169 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">referencias.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">latinoware6969</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="21" intorder="2">latinoware20457</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="22" intorder="2">latinoware20457</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">latinoware20457</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">acad54431201</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">latinoware6969</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">latinoware6969</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">latinoware6969</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="36" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="39" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="40" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">latinoware7985</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">latinoware7985</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">latinoware7985</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">latinoware7985</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">latinoware7985</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">latinoware7985</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="53" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="55" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="56" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="57" intorder="1">latinoware40920</bcf:citekey>
-    <bcf:citekey order="58" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="59" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="60" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="61" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="62" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="63" intorder="1">latinoware34224</bcf:citekey>
-    <bcf:citekey order="64" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="65" intorder="1">latinoware37693</bcf:citekey>
-    <bcf:citekey order="66" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="1">acad54431201</bcf:citekey>
+    <bcf:citekey order="1">latinoware20457</bcf:citekey>
+    <bcf:citekey order="2">latinoware20457</bcf:citekey>
+    <bcf:citekey order="3">latinoware20457</bcf:citekey>
+    <bcf:citekey order="4">acad54431201</bcf:citekey>
+    <bcf:citekey order="5">acad54431201</bcf:citekey>
+    <bcf:citekey order="6">latinoware6969</bcf:citekey>
+    <bcf:citekey order="7">latinoware6969</bcf:citekey>
+    <bcf:citekey order="8">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="9">latinoware34224</bcf:citekey>
+    <bcf:citekey order="10">latinoware34224</bcf:citekey>
+    <bcf:citekey order="11">latinoware37693</bcf:citekey>
+    <bcf:citekey order="12">latinoware37693</bcf:citekey>
+    <bcf:citekey order="13">latinoware40920</bcf:citekey>
+    <bcf:citekey order="14">latinoware40920</bcf:citekey>
+    <bcf:citekey order="15">latinoware37693</bcf:citekey>
+    <bcf:citekey order="15">latinoware6969</bcf:citekey>
+    <bcf:citekey order="16">w3c2024wcag22</bcf:citekey>
+    <bcf:citekey order="17">latinoware6969</bcf:citekey>
+    <bcf:citekey order="18">latinoware6969</bcf:citekey>
+    <bcf:citekey order="19">latinoware20457</bcf:citekey>
+    <bcf:citekey order="20">latinoware20457</bcf:citekey>
+    <bcf:citekey order="21">acad54431201</bcf:citekey>
+    <bcf:citekey order="22">acad54431201</bcf:citekey>
+    <bcf:citekey order="23">latinoware34224</bcf:citekey>
+    <bcf:citekey order="24">latinoware34224</bcf:citekey>
+    <bcf:citekey order="25">latinoware6969</bcf:citekey>
+    <bcf:citekey order="26">latinoware6969</bcf:citekey>
+    <bcf:citekey order="27">latinoware20457</bcf:citekey>
+    <bcf:citekey order="28">latinoware20457</bcf:citekey>
+    <bcf:citekey order="29">nvaccess2026guia</bcf:citekey>
+    <bcf:citekey order="30">nvaccess2026guia</bcf:citekey>
+    <bcf:citekey order="31">latinoware20457</bcf:citekey>
+    <bcf:citekey order="32">latinoware20457</bcf:citekey>
+    <bcf:citekey order="33">latinoware6969</bcf:citekey>
+    <bcf:citekey order="34">latinoware6969</bcf:citekey>
+    <bcf:citekey order="35">nvaccess2026guia</bcf:citekey>
+    <bcf:citekey order="36">latinoware6969</bcf:citekey>
+    <bcf:citekey order="36">acad54431201</bcf:citekey>
+    <bcf:citekey order="37">latinoware6969</bcf:citekey>
+    <bcf:citekey order="38">acad54431201</bcf:citekey>
+    <bcf:citekey order="39">nvaccess2024controller</bcf:citekey>
+    <bcf:citekey order="40">nvaccess2024controller</bcf:citekey>
+    <bcf:citekey order="41">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="42">vaswani2017attention</bcf:citekey>
+    <bcf:citekey order="43">vaswani2017attention</bcf:citekey>
+    <bcf:citekey order="44">grattafiori2024llama3</bcf:citekey>
+    <bcf:citekey order="45">brown2020fewshot</bcf:citekey>
+    <bcf:citekey order="46">brown2020fewshot</bcf:citekey>
+    <bcf:citekey order="47">ouyang2022instructions</bcf:citekey>
+    <bcf:citekey order="48">ouyang2022instructions</bcf:citekey>
+    <bcf:citekey order="49">chen2021codex</bcf:citekey>
+    <bcf:citekey order="50">chen2021codex</bcf:citekey>
+    <bcf:citekey order="51">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="52">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="53">yang2025qwen3</bcf:citekey>
+    <bcf:citekey order="54">bi2025gptoss</bcf:citekey>
+    <bcf:citekey order="55">bi2025gptoss</bcf:citekey>
+    <bcf:citekey order="56">ollama2026gemma4</bcf:citekey>
+    <bcf:citekey order="57">openai2024gpt4o</bcf:citekey>
+    <bcf:citekey order="58">ollama2026nuvem</bcf:citekey>
+    <bcf:citekey order="59">ollama2026contexto</bcf:citekey>
+    <bcf:citekey order="60">sahoo2024prompt</bcf:citekey>
+    <bcf:citekey order="61">sahoo2024prompt</bcf:citekey>
+    <bcf:citekey order="62">sahoo2024prompt</bcf:citekey>
+    <bcf:citekey order="63">brown2020fewshot</bcf:citekey>
+    <bcf:citekey order="64">wei2022cot</bcf:citekey>
+    <bcf:citekey order="65">wei2022cot</bcf:citekey>
+    <bcf:citekey order="66">ouyang2022instructions</bcf:citekey>
+    <bcf:citekey order="67">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="68">latinoware34224</bcf:citekey>
+    <bcf:citekey order="69">latinoware34224</bcf:citekey>
+    <bcf:citekey order="70">sun2023chatgptsum</bcf:citekey>
+    <bcf:citekey order="71">sun2023chatgptsum</bcf:citekey>
+    <bcf:citekey order="72">latinoware34224</bcf:citekey>
+    <bcf:citekey order="73">latinoware34224</bcf:citekey>
+    <bcf:citekey order="74">latinoware7985</bcf:citekey>
+    <bcf:citekey order="75">latinoware7985</bcf:citekey>
+    <bcf:citekey order="76">latinoware7985</bcf:citekey>
+    <bcf:citekey order="77">latinoware7985</bcf:citekey>
+    <bcf:citekey order="78">latinoware7985</bcf:citekey>
+    <bcf:citekey order="79">latinoware7985</bcf:citekey>
+    <bcf:citekey order="80">latinoware7985</bcf:citekey>
+    <bcf:citekey order="81">latinoware34224</bcf:citekey>
+    <bcf:citekey order="82">latinoware34224</bcf:citekey>
+    <bcf:citekey order="83">latinoware40920</bcf:citekey>
+    <bcf:citekey order="84">latinoware40920</bcf:citekey>
+    <bcf:citekey order="85">latinoware37693</bcf:citekey>
+    <bcf:citekey order="86">latinoware37693</bcf:citekey>
+    <bcf:citekey order="87">sun2023chatgptsum</bcf:citekey>
+    <bcf:citekey order="88">sun2023chatgptsum</bcf:citekey>
+    <bcf:citekey order="89">latinoware34224</bcf:citekey>
+    <bcf:citekey order="90">latinoware34224</bcf:citekey>
+    <bcf:citekey order="91">latinoware20457</bcf:citekey>
+    <bcf:citekey order="92">latinoware20457</bcf:citekey>
+    <bcf:citekey order="93">acad54431201</bcf:citekey>
+    <bcf:citekey order="94">acad54431201</bcf:citekey>
+    <bcf:citekey order="95">latinoware37693</bcf:citekey>
+    <bcf:citekey order="96">latinoware37693</bcf:citekey>
+    <bcf:citekey order="97">latinoware40920</bcf:citekey>
+    <bcf:citekey order="98">latinoware40920</bcf:citekey>
+    <bcf:citekey order="99">sun2023chatgptsum</bcf:citekey>
+    <bcf:citekey order="100">sun2023chatgptsum</bcf:citekey>
+    <bcf:citekey order="101">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="102">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="103">latinoware34224</bcf:citekey>
+    <bcf:citekey order="104">latinoware34224</bcf:citekey>
+    <bcf:citekey order="105">latinoware37693</bcf:citekey>
+    <bcf:citekey order="106">latinoware37693</bcf:citekey>
+    <bcf:citekey order="107">treesitter</bcf:citekey>
+    <bcf:citekey order="108">nvaccess2024controller</bcf:citekey>
+    <bcf:citekey order="109">ollama2026nuvem</bcf:citekey>
+    <bcf:citekey order="110">yang2025qwen3</bcf:citekey>
+    <bcf:citekey order="111">bi2025gptoss</bcf:citekey>
+    <bcf:citekey order="112">ollama2026qwen3</bcf:citekey>
+    <bcf:citekey order="112">ollama2026gemma4</bcf:citekey>
+    <bcf:citekey order="113">ollama2026nuvem</bcf:citekey>
+    <bcf:citekey order="114">ollama2026qwen3</bcf:citekey>
+    <bcf:citekey order="115">yang2025qwen3</bcf:citekey>
+    <bcf:citekey order="116">ollama2026qwen3</bcf:citekey>
+    <bcf:citekey order="117">ollama2026gptoss</bcf:citekey>
+    <bcf:citekey order="118">bi2025gptoss</bcf:citekey>
+    <bcf:citekey order="119">ollama2026gemma4</bcf:citekey>
+    <bcf:citekey order="120">ollama2026nuvem</bcf:citekey>
+    <bcf:citekey order="121">nvaccess2024controller</bcf:citekey>
+    <bcf:citekey order="122">nvaccess2024controller</bcf:citekey>
+    <bcf:citekey order="123">latinoware34224</bcf:citekey>
+    <bcf:citekey order="124">latinoware34224</bcf:citekey>
+    <bcf:citekey order="125">latinoware34224</bcf:citekey>
+    <bcf:citekey order="126">latinoware34224</bcf:citekey>
+    <bcf:citekey order="127">latinoware20457</bcf:citekey>
+    <bcf:citekey order="128">latinoware20457</bcf:citekey>
+    <bcf:citekey order="129">ollama2026nuvem</bcf:citekey>
+    <bcf:citekey order="130">nvaccess2024controller</bcf:citekey>
+    <bcf:citekey order="131">nvaccess2026guia</bcf:citekey>
+    <bcf:citekey order="132">acad54431201</bcf:citekey>
+    <bcf:citekey order="133">latinoware20457</bcf:citekey>
+    <bcf:citekey order="134">latinoware6969</bcf:citekey>
+    <bcf:citekey order="135">hou2024llmse</bcf:citekey>
+    <bcf:citekey order="136">latinoware34224</bcf:citekey>
+    <bcf:citekey order="137">latinoware37693</bcf:citekey>
+    <bcf:citekey order="138">latinoware40920</bcf:citekey>
+    <bcf:citekey order="139">w3c2024wcag22</bcf:citekey>
+    <bcf:citekey order="140">nvaccess2026guia</bcf:citekey>
+    <bcf:citekey order="141">nvaccess2024controller</bcf:citekey>
+    <bcf:citekey order="142">vaswani2017attention</bcf:citekey>
+    <bcf:citekey order="143">grattafiori2024llama3</bcf:citekey>
+    <bcf:citekey order="144">brown2020fewshot</bcf:citekey>
+    <bcf:citekey order="145">ouyang2022instructions</bcf:citekey>
+    <bcf:citekey order="146">chen2021codex</bcf:citekey>
+    <bcf:citekey order="147">yang2025qwen3</bcf:citekey>
+    <bcf:citekey order="148">bi2025gptoss</bcf:citekey>
+    <bcf:citekey order="149">ollama2026gemma4</bcf:citekey>
+    <bcf:citekey order="150">openai2024gpt4o</bcf:citekey>
+    <bcf:citekey order="151">ollama2026nuvem</bcf:citekey>
+    <bcf:citekey order="152">ollama2026contexto</bcf:citekey>
+    <bcf:citekey order="153">sahoo2024prompt</bcf:citekey>
+    <bcf:citekey order="154">wei2022cot</bcf:citekey>
+    <bcf:citekey order="155">sun2023chatgptsum</bcf:citekey>
+    <bcf:citekey order="156">latinoware7985</bcf:citekey>
+    <bcf:citekey order="157">treesitter</bcf:citekey>
+    <bcf:citekey order="158">ollama2026qwen3</bcf:citekey>
+    <bcf:citekey order="159">ollama2026gptoss</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

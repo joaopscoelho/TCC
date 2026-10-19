@@ -2,8 +2,9 @@
 Runner minimo de linha de comando: "python -m analisador <caminho>".
 
 Fase 1 e 2 (secao 13 do documento). Nao e a CLI final: a navegacao por
-etapas (listar, proximo, detalhe N, buscar) e a fala via NVDA sao a Fase 4,
-e a formatacao acessivel definitiva e a Fase 3.
+etapas (listar, proximo, detalhe N, buscar) e a Fase 4, e a formatacao
+acessivel definitiva e a Fase 3. Com --falar, o relatorio tambem e entregue
+ao NVDA (so Windows, ver analisador/nvda).
 
 Sem --explicar, roda so a analise estatica (sem modelo, sem rede). Com
 --explicar, pede a um modelo local (Ollama) a visao geral e a explicacao de
@@ -22,6 +23,7 @@ from analisador.analise import analisar
 from analisador.explicacao import explicar
 from analisador.llm import ErroConfiguracaoLLM, criar_explicador
 from analisador.llm.local import CONTEXTO_PADRAO
+from analisador.nvda import ErroFala, criar_falador
 
 NOMES_TIPO = {
     "chamada_dependencia_externa": "chamada a dependencia externa",
@@ -179,9 +181,32 @@ def main(argv=None):
                         help=f"janela de contexto em tokens (padrao: {CONTEXTO_PADRAO})")
     parser.add_argument("--max-regioes", type=int, default=None,
                         help="explica so as N regioes mais graves")
+    parser.add_argument("--falar", action="store_true",
+                        help="alem de imprimir, fala o relatorio pelo NVDA "
+                             "(so Windows, com o NVDA aberto)")
+    parser.add_argument("--dll", default=None,
+                        help="caminho do nvdaControllerClient.dll (padrao: variavel "
+                             "NVDA_CONTROLLER_DLL ou a pasta bibliotecas)")
     args = parser.parse_args(argv)
+    if args.falar and args.json:
+        parser.error("--falar nao se combina com --json: JSON nao serve para ouvir.")
 
     _configurar_saida()
+
+    # O NVDA e conferido antes da analise e do modelo: se nao estiver no ar,
+    # o erro aparece em segundos, nao depois de minutos de geracao.
+    falador = None
+    erro_fala = None
+    if args.falar:
+        try:
+            falador = criar_falador("nvda", caminho_dll=args.dll)
+            falador.verificar()
+        except ErroFala as erro:
+            falador = None
+            erro_fala = str(erro)
+            print(f"Erro: {erro_fala}", file=sys.stderr)
+            print("O relatorio sera entregue apenas como texto.", file=sys.stderr)
+
     resultado = analisar(args.caminho)
 
     explicacao = None
@@ -204,12 +229,22 @@ def main(argv=None):
         if erro_explicacao is not None:
             dados["erro_explicacao"] = erro_explicacao
         print(json.dumps(dados, ensure_ascii=False, indent=2))
-    elif explicacao is not None:
-        print(relatorio_explicado(resultado, explicacao))
     else:
-        print(relatorio_texto(resultado))
+        if explicacao is not None:
+            texto = relatorio_explicado(resultado, explicacao)
+        else:
+            texto = relatorio_texto(resultado)
+        print(texto)
+        if falador is not None:
+            try:
+                falador.falar(texto)
+            except ErroFala as erro:
+                erro_fala = str(erro)
+                print(f"Erro: {erro_fala}", file=sys.stderr)
 
-    return 2 if erro_explicacao is not None else 0
+    if erro_explicacao is not None:
+        return 2
+    return 3 if erro_fala is not None else 0
 
 
 if __name__ == "__main__":

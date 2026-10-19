@@ -1,2 +1,0 @@
-\babel@toc {brazil}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Figura 1: Diagrama do ciclo de execução do leitor de tela NVDA, evidenciando a captura de eventos por APIs (MSAA, UIA, IA2), a divisão de processamento por tipo de conteúdo (\textit {Buffer Virtual } e Foco Direto) e as interfaces de saída de áudio e braille.}}{10}{figure.2.1}%

@@ -1,26 +1,42 @@
 \changetocdepth {4}
 \babel@toc {brazil}{}\relax 
-\contentsline {chapter}{\chapternumberline {1}Introdução}{6}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Objetivos}{7}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Objetivos Geral}{7}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Objetivos Específicos}{7}{subsection.1.1.2}%
-\contentsline {chapter}{\chapternumberline {2}Referencial Teórico}{8}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Acessibilidade na programação}{8}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Tecnologias Assistivas e Leitores de Tela}{9}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Inteligência Artificial}{10}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Inteligência Artificial Aplicada à Engenharia de Software}{11}{subsection.2.3.1}%
-\contentsline {section}{\numberline {2.4}Prototipação}{12}{section.2.4}%
-\contentsline {chapter}{\chapternumberline {3}Trabalhos Relacionados}{13}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Inteligência Artificial e Acessibilidade: Uma Experiência de Inclusão para Programadores Cegos em Ambientes de Desenvolvimento}{13}{section.3.1}%
-\contentsline {section}{\numberline {3.2}WAE - Web Accessibility Engine: Uma Ferramenta de Transpilação Acessível e Estruturada para Programadores Cegos ou de Baixa Visão}{14}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Diretrizes de Acessibilidade em Ambientes de Desenvolvimento Integrado para Estudantes Cegos}{14}{section.3.3}%
-\contentsline {chapter}{\chapternumberline {4}Métodos}{16}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Revisão e Análise Preliminar}{16}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Definição de Requisitos e Critérios}{16}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Definição da Estratégia de Geração de Explicações}{17}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Desenvolvimento do Protótipo Conceitual}{17}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Validação Técnica e Conformidade com Diretrizes de Acessibilidade}{18}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Teste Automatizado com NVDA Controller Client}{18}{subsection.4.5.1}%
-\contentsline {chapter}{\chapternumberline {5}Resultados Esperados}{19}{chapter.5}%
+\contentsline {chapter}{\chapternumberline {1}Introdu^^c3^^a7^^c3^^a3o}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Objetivos}{8}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Objetivo Geral}{8}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Objetivos Espec^^c3^^adficos}{8}{subsection.1.1.2}%
+\contentsline {chapter}{\chapternumberline {2}Referencial Te^^c3^^b3rico}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Acessibilidade na programa^^c3^^a7^^c3^^a3o}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Tecnologias Assistivas e Leitores de Tela}{11}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Intelig^^c3^^aancia Artificial e Modelos de Linguagem}{13}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Modelos de Linguagem de Grande Porte}{13}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Modelos Abertos, Execu^^c3^^a7^^c3^^a3o Local e Janela de Contexto}{14}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Engenharia de Prompts}{14}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Intelig^^c3^^aancia Artificial Aplicada ^^c3^^a0 Engenharia de Software}{15}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}Prototipa^^c3^^a7^^c3^^a3o}{16}{section.2.4}%
+\contentsline {chapter}{\chapternumberline {3}Trabalhos Relacionados}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Intelig^^c3^^aancia Artificial e Acessibilidade: Uma Experi^^c3^^aancia de Inclus^^c3^^a3o para Programadores Cegos em Ambientes de Desenvolvimento}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}WAE - Web Accessibility Engine: Uma Ferramenta de Transpila^^c3^^a7^^c3^^a3o Acess^^c3^^advel e Estruturada para Programadores Cegos ou de Baixa Vis^^c3^^a3o}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Diretrizes de Acessibilidade em Ambientes de Desenvolvimento Integrado para Estudantes Cegos}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Sumariza^^c3^^a7^^c3^^a3o Autom^^c3^^a1tica de C^^c3^^b3digo com Modelos de Linguagem}{19}{section.3.4}%
+\contentsline {section}{\numberline {3.5}S^^c3^^adntese e posicionamento}{19}{section.3.5}%
+\contentsline {chapter}{\chapternumberline {4}M^^c3^^a9todos}{20}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Revis^^c3^^a3o e An^^c3^^a1lise da Literatura}{20}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Defini^^c3^^a7^^c3^^a3o de Requisitos e Crit^^c3^^a9rios}{20}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Estrat^^c3^^a9gia de Gera^^c3^^a7^^c3^^a3o de Explica^^c3^^a7^^c3^^b5es}{21}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Desenvolvimento do Prot^^c3^^b3tipo}{22}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Sele^^c3^^a7^^c3^^a3o dos Modelos de Linguagem}{24}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Valida^^c3^^a7^^c3^^a3o T^^c3^^a9cnica e Conformidade com as Regras de Acessibilidade}{25}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Testes Automatizados}{26}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Integra^^c3^^a7^^c3^^a3o com o NVDA por meio do \textit {NVDA Controller Client}}{26}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Verifica^^c3^^a7^^c3^^a3o Autom^^c3^^a1tica das Explica^^c3^^a7^^c3^^b5es}{27}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.4}Compara^^c3^^a7^^c3^^a3o entre Modelos}{27}{subsection.4.6.4}%
+\contentsline {subsection}{\numberline {4.6.5}Avalia^^c3^^a7^^c3^^a3o Explorat^^c3^^b3ria com Usu^^c3^^a1rios}{28}{subsection.4.6.5}%
+\contentsline {chapter}{\chapternumberline {5}Resultados Parciais e Resultados Esperados}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Resultados Parciais}{29}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Resultados Esperados}{29}{section.5.2}%
+\contentsline {chapter}{\chapternumberline {6}Limita^^c3^^a7^^c3^^b5es e Trabalhos Futuros}{31}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Limita^^c3^^a7^^c3^^b5es}{31}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Trabalhos Futuros}{32}{section.6.2}%
+\contentsline {chapter}{\chapternumberline {7}Cronograma}{33}{chapter.7}%
 \vspace {\cftbeforepartskip }
-\contentsline {chapter}{Refer\^encias}{20}{section*.8}%
+\contentsline {chapter}{Refer\^encias}{35}{section*.8}%

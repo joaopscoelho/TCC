@@ -10,7 +10,9 @@ from analisador.llm import (
     ErroRespostaVazia, ErroServidorIndisponivel, ErroTempoEsgotado, Mensagem,
     criar_explicador, estimar_tokens,
 )
-from analisador.llm.local import HOST_PADRAO, MODELO_PADRAO, ExplicadorLocal, normalizar_host
+from analisador.llm.local import (
+    HOST_PADRAO, MODELO_PADRAO, VARIAVEL_CHAVE, ExplicadorLocal, normalizar_host,
+)
 
 MENSAGENS = [Mensagem("system", "regras"), Mensagem("user", "explique")]
 
@@ -70,7 +72,10 @@ def test_modelo_nao_instalado_diz_como_baixar_e_o_que_ha(ollama):
 
 
 def test_servidor_fora_do_ar_e_erro_de_configuracao():
-    explicador = ExplicadorLocal(host=_porta_fechada(), timeout=2)
+    # No Windows a recusa em porta fechada pode demorar alguns segundos; com
+    # um timeout curto o tempo estoura antes e o erro vira de tempo esgotado,
+    # nao de conexao. Em Linux e macOS a recusa e imediata.
+    explicador = ExplicadorLocal(host=_porta_fechada(), timeout=15)
     for chamada in (explicador.verificar, lambda: explicador.gerar(MENSAGENS)):
         with pytest.raises(ErroServidorIndisponivel) as info:
             chamada()
@@ -171,3 +176,55 @@ def test_estimativa_de_tokens_e_conservadora():
     assert estimar_tokens("a" * 30) == 10
     assert estimar_tokens("") == 0
     assert estimar_tokens("ab") == 1
+
+
+# ------------------------------------------------------------ nuvem do Ollama
+
+def test_chave_explicita_vai_no_cabecalho_authorization(ollama):
+    ExplicadorLocal(host=ollama.url, chave="segredo").gerar(MENSAGENS)
+    assert ollama.cabecalhos[-1]["Authorization"] == "Bearer segredo"
+
+
+def test_chave_do_ambiente_nao_vai_para_servidor_que_nao_e_a_nuvem(monkeypatch, ollama):
+    monkeypatch.setenv(VARIAVEL_CHAVE, "segredo")
+    ExplicadorLocal(host=ollama.url).gerar(MENSAGENS)
+    assert "Authorization" not in ollama.cabecalhos[-1]
+
+
+def test_nuvem_sem_chave_para_na_hora_sem_chamar_a_rede(monkeypatch):
+    monkeypatch.delenv(VARIAVEL_CHAVE, raising=False)
+    explicador = ExplicadorLocal(host="https://ollama.com", modelo="gemma4:31b")
+    assert explicador.nuvem
+    for chamada in (explicador.verificar, lambda: explicador.gerar(MENSAGENS)):
+        with pytest.raises(ErroConfiguracaoLLM) as info:
+            chamada()
+        assert VARIAVEL_CHAVE in str(info.value) and "settings/keys" in str(info.value)
+
+
+def test_nuvem_le_a_chave_do_ambiente_e_nao_a_expoe_na_descricao(monkeypatch):
+    monkeypatch.setenv(VARIAVEL_CHAVE, "segredo-do-ambiente")
+    explicador = ExplicadorLocal(host="https://ollama.com", modelo="gemma4:31b")
+    descricao = explicador.descricao()
+    assert descricao["nuvem"] is True
+    assert "segredo-do-ambiente" not in str(descricao)
+
+
+def test_servidor_local_nao_e_nuvem():
+    assert not ExplicadorLocal(host="http://127.0.0.1:11434").nuvem
+    assert not ExplicadorLocal(host="https://ollama.com.exemplo.net").nuvem
+
+
+def test_chave_recusada_e_erro_de_configuracao_e_para_a_geracao(ollama):
+    ollama.exigir_chave = "certa"
+    explicador = ExplicadorLocal(host=ollama.url, chave="errada")
+    for chamada in (explicador.verificar, lambda: explicador.gerar(MENSAGENS)):
+        with pytest.raises(ErroConfiguracaoLLM) as info:
+            chamada()
+        assert "401" in str(info.value) and "chave" in str(info.value)
+
+
+def test_chave_certa_e_aceita(ollama):
+    ollama.exigir_chave = "certa"
+    explicador = ExplicadorLocal(host=ollama.url, chave="certa")
+    assert explicador.verificar() == {"digest": "sha256:abc123"}
+    assert explicador.gerar(MENSAGENS).texto == "Texto de teste."

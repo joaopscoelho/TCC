@@ -1,0 +1,32 @@
+\begin{tikzpicture}[
+    font=\small,
+    etapa/.style={draw, thick, rounded corners=2pt, align=center, text width=8.4cm, minimum height=11mm, inner sep=3pt, fill=gray!8},
+    lateral/.style={etapa, text width=6.3cm, minimum height=15mm},
+    entrada/.style={etapa, fill=blue!10},
+    saida/.style={etapa, fill=green!12},
+    modelo/.style={draw, thick, rounded corners=2pt, align=center, text width=4.8cm, minimum height=11mm, inner sep=3pt, fill=orange!12},
+    seta/.style={-{Stealth[length=2.6mm]}, thick}
+  ]
+  \node[entrada] (proj) at (0,0) {Projeto Python (entrada)};
+  \node[etapa] (ast) at (0,-1.9) {Varredura e análise sintática\\(\textit{Tree-sitter}: Árvore Sintática Abstrata;\\erros de sintaxe são reportados)};
+  \node[lateral] (reg) at (-3.7,-4.3) {Regras determinísticas\\de pontos críticos\\(cinco tipos, gravidade de 2 a 5)};
+  \node[lateral] (mapa) at (3.7,-4.3) {Mapa estrutural do projeto\\(definições, importações e grafo de chamadas)};
+  \node[etapa] (pr) at (0,-6.6) {Montagem dos \textit{prompts}\\(regras de acessibilidade e dados da análise estática)};
+  \draw[dashed, rounded corners=3pt] (-6.4,-7.7) rectangle (6.4,-10.5);
+  \node[modelo] (loc) at (-3.2,-8.7) {Ollama local\\(modelo de pesos abertos)};
+  \node[modelo] (nuv) at (3.2,-8.7) {Ollama em nuvem\\(chave de API)};
+  \node[font=\footnotesize] at (0,-10.1) {interface \texttt{ExplicadorLLM}};
+  \node[etapa] (txt) at (0,-12.1) {Explicações em texto\\(visão geral e uma por região de código)};
+  \node[saida] (out) at (0,-14.0) {Texto impresso e fala pelo leitor de tela NVDA\\(\textit{NVDA Controller Client})};
+
+  \draw[seta] (proj) -- (ast);
+  \draw[seta] (ast.south) -- ++(0,-3mm) -| (reg.north);
+  \draw[seta] (ast.south) -- ++(0,-3mm) -| (mapa.north);
+  \draw[seta] (reg.south) |- ($(pr.north)+(0,3mm)$) -- (pr.north);
+  \draw[seta] (mapa.south) |- ($(pr.north)+(0,3mm)$) -- (pr.north);
+  \draw[seta] (pr.south) -- ++(0,-3mm) -| (loc.north);
+  \draw[seta] (pr.south) -- ++(0,-3mm) -| (nuv.north);
+  \draw[seta] (loc.south) |- ($(txt.north)+(0,3mm)$) -- (txt.north);
+  \draw[seta] (nuv.south) |- ($(txt.north)+(0,3mm)$) -- (txt.north);
+  \draw[seta] (txt) -- (out);
+\end{tikzpicture}
